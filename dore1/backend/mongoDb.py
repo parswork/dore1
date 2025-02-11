@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-client=MongoClient("mongodb://127.0.0.1:27017")
+client=MongoClient("mongodb://127.0.0.1:27017", serverSelectionTimeoutMS=5000)
 class mongoDb():
     def __init__(self) -> None:
         self.mydb = client["database"]
@@ -82,5 +82,11 @@ class mongoDb():
         if model==None:
             return False
         return True
+    def getAllData(self):
+        all_data = []
+        for doc in self.coll.find():
+            all_data.append(doc)
+        return all_data
+
 
         

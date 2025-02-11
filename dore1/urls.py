@@ -21,4 +21,5 @@ app=Views()
 urlpatterns = [
     path('', app.mainPage),
     path('report/', app.getReport),
+    path('savedata/', app.saveData,name="savedata"),
 ]
