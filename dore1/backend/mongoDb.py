@@ -27,7 +27,7 @@ class mongoDb():
     
     def configData1(self,data):
         data1= {
-                    "_id": int(data[0]), 
+                    "_id": "{}".format(data[0]), 
                     "username": "{}".format(data[1]), 
                     "phonenumber":"{}".format(data[2]), 
                     "rt": "{}".format(data[3]),
@@ -41,14 +41,19 @@ class mongoDb():
            
         return data1
    
-    def saveData(self,data):
-        
+    def saveData(self, data):
         try:
-             self.coll.insert_many(data)
-             return True
-             
-        except:
+            # Ensure data is a list
+            if isinstance(data, dict):  # If a single document is passed
+                data = [data]  # Convert it to a list
+            
+            self.coll.insert_many(data)
+            
+            return True
+        except Exception as e:
+            print(f'Error saving data: {e}')  # Log the error for debugging
             return False
+
     def readInformation(self,item_search,item):
           if item_search=="_id":
              model=self.coll.find_one({"{}".format(item_search): int(item)})

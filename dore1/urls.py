@@ -22,4 +22,7 @@ urlpatterns = [
     path('', app.mainPage),
     path('report/', app.getReport),
     path('savedata/', app.saveData,name="savedata"),
+    path('getreport/', app.getReportOut,name="getreport"),
+    path('getrport/', app.downloadextract,name="getrport"),
+    
 ]
