@@ -11,4 +11,6 @@ class Views():
         self.data_sent=data_sent()
     def mainPage(self,request):
         return render(request, 'index.html')
+    def getReport(self,request):
+        return render(request, 'report.html')
     

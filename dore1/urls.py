@@ -20,4 +20,5 @@ from .views import Views
 app=Views()
 urlpatterns = [
     path('', app.mainPage),
+    path('report/', app.getReport),
 ]
