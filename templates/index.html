@@ -1,52 +1,121 @@
 {% load static %}
 <!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
-
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'assets/fontawesome.css' %}">
+    <title>کسب درآمد با هوش مصنوعی</title>
+    <!-- Google Fonts Link For Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>ثبت نام دوره هوش مصنوعی</title>
+    <script src="{% static 'js/script.js' %}" defer></script>
+    <style>
+        .centered-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white; /* Change the color as needed */
+            text-align: center;
+            font-size: 24px; /* Adjust font size as needed */
+            z-index: 10; /* Ensure it appears above other elements */
+        }
+    </style>
 </head>
-
 <body>
-    <div id="register">
-        <form  method="POST" action="{% url 'savedata' %}" class="register">
-            {% csrf_token %}
-            <h1>  فرم ثبت نام دوره آمورشی کسب درآمد با هوش مصنوعی</h1>
-            <div class="input">
-                <input name="username" type="text" id="username" required>
-                <label for="username">نام و نام خانوادگی</label>
+    <header>
+        <nav class="navbar">
+            <span class="hamburger-btn material-symbols-rounded">menu</span>
+            <a href="#" class="logo">
+                <img src="{% static 'images/logo.jpg' %}" alt="logo">
+                <h2>پارس ورک</h2>
+            </a>
+            <ul class="links">
+                <span class="close-btn material-symbols-rounded" >close</span>
+            </ul>
+            <button class="login-btn" id="pps1">بزن بریم</button>
+        </nav>
+    </header>
+
+    <div class="blur-bg-overlay"></div>
+    <div class="form-popup">
+        <span class="close-btn material-symbols-rounded" id="close">close</span>
+        <div class="form-box login">
+            <div class="form-details">
+                <h2>با ما بروز باش</h2>
+                <p>با شرکت در دوره کسب درآمد با هوش مصنوعی آیندتو بساز</p>
             </div>
-            <div class="input">
-                <input name="ncode" type="text" id="ncode" required>
-                <label for="username">شماره ملی</label>
+            <div class="form-content">
+                <form method="POST" action="{% url 'savedata' %}" class="register">
+                    {% csrf_token %}
+                    
+                    <div class="input">
+                        <input name="username" type="text" id="username" required placeholder=" ">
+                        <label for="username">نام و نام خانوادگی</label>
+                    </div>
+                    <div class="input">
+                        <input name="ncode" type="text" id="ncode" required placeholder=" ">
+                        <label for="ncode">شماره ملی</label>
+                    </div>
+                    <div class="input">
+                        <input name="email" type="email" id="email" required placeholder=" ">
+                        <label for="email">ایمیل</label>
+                    </div>
+                    <div class="input">
+                        <input name="rtahsil" type="text" id="rtahsil" required placeholder=" ">
+                        <label for="rtahsil">رشته ی تحصیلی</label>
+                    </div>
+                    <div class="input">
+                        <input name="phonenumber" type="text" id="phonenumber" required placeholder=" ">
+                        <label for="phonenumber">شماره همراه</label>
+                    </div>
+                    <div class="input">
+                        <input name="arr" type="text" id="arr" required placeholder=" ">
+                        <label for="arr">آدرس</label>
+                    </div>
+                    <button id="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> ثبت اطلاعات</button>
+                </form>
+                </form>
+                <div class="bottom-link">
+                    
+                    <a href="#" id="signup-link">برای گزارش گیری کلیک کنید</a>
+                </div>
             </div>
-            <div class="input">
-                <input name="email" type="email" id="email" required>
-                <label for="email">ایمیل</label>
+        </div>
+        <div class="form-box signup">
+            <div class="form-content">
+                <h2>گزارش گیری</h2>
+                <form action="#">
+                    <div class="input-field">
+                        <input type="text" required>
+                        <label>نام کاربری</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" required>
+                        <label>رمز عبور</label>
+                    </div>
+                    <div class="policy-text">
+                        <input type="checkbox" id="policy">
+                        <label for="policy">
+                            <a href="#" class="option">با قوانین دروه آموزشی کسب درآمد با هوش مصنوعی موافقم</a>
+                        </label>
+                    </div>
+                    <button type="submit">گزارش گیری</button>
+                </form>
+                <div class="bottom-link">
+                    در دوره ثبت نام نکرده اید 
+                    <a href="#" id="login-link">برای ثبت نام کلیک کنید</a>
+                </div>
             </div>
-            <div class="input">
-                <input name="rtahsil" type="text" id="rtahsil" required>
-                <label for="username">رشته ی تحصیلی</label>
-            </div>
-            <div class="input">
-                <input name="phonenumber" type="text" id="phonenumber" required>
-                <label for="username">شماره همراه</label>
-            </div>
-            <div class="input">
-                <input name="arr" type="text" id="arr" required>
-                <label for="username">آدرس</label>
-            </div>
-            <button  id="submit" ><i class="fa-solid fa-arrow-right-to-bracket"></i> ثبت اطلاعات</button>
-       
-        </form>
+        </div>
     </div>
 
-    <script src="{% static 'js/app.js' %}"></script>
+    <!-- Centered Text -->
+    <div class="centered-text"  id="centered-text">
+        <h2>به چالش کسب درآمد با هوش مصنوعی خوش آمدید</h2>
+        <p>قرار هست در این دوره به صورت قدرتمند کسب درآمد با هوش مصنوعی را دنبال کنیم اگر عاشق بروز شدن و کسب درآمد با هوش مصنوعی هستی بزن بریم</p>
+    </div>
+   
 </body>
-
 </html>
