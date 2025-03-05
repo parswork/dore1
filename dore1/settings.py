@@ -73,6 +73,8 @@ WSGI_APPLICATION = 'dore1.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongodb:27017/")
+
 
 DATABASES = {
     'default': {
@@ -80,6 +82,8 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
 
 
 # Password validation

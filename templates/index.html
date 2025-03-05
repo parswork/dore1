@@ -22,6 +22,74 @@
             z-index: 10; /* Ensure it appears above other elements */
         }
     </style>
+    <style>
+        .form-popup {
+            width: 90%; /* کاهش عرض کادر */
+            max-width: 700px; /* حداکثر عرض */
+            margin: auto; /* مرکز کردن کادر */
+            padding: 20px; /* فضای داخلی کمتر */
+            border-radius: 10px; /* گوشه‌های گرد */
+            background-color: #ffffff; /* رنگ پس‌زمینه سفید */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* سایه ملایم */
+        }
+    
+        .form-content {
+            padding: 15px; /* فضای داخلی کمتر */
+        }
+    
+        .input {
+            margin-bottom: 15px; /* فاصله بین فیلدها */
+        }
+    
+        .input input {
+            width: 100%; /* عرض کامل */
+            padding: 10px; /* فضای داخلی کمتر */
+            font-size: 14px; /* اندازه فونت کوچکتر */
+            border: 1px solid #ccc; /* حاشیه */
+            border-radius: 5px; /* گوشه‌های گرد */
+            transition: border-color 0.3s; /* انیمیشن تغییر رنگ حاشیه */
+        }
+    
+        .input input:focus {
+            border-color: #007BFF; /* رنگ حاشیه در حالت فوکوس */
+            outline: none; /* حذف حاشیه پیش‌فرض */
+        }
+    
+        button {
+            width: 100%; /* عرض کامل */
+            padding: 10px; /* فضای داخلی کمتر */
+            font-size: 16px; /* اندازه فونت بزرگتر */
+            border-radius: 5px; /* گوشه‌های گرد */
+            background-color: #007BFF; /* رنگ پس‌زمینه دکمه */
+            color: white; /* رنگ متن دکمه */
+            border: none; /* حذف حاشیه */
+            cursor: pointer; /* نشانگر ماوس */
+            transition: background-color 0.3s; /* انیمیشن تغییر رنگ */
+        }
+    
+        button:hover {
+            background-color: #0056b3; /* رنگ دکمه در حالت هاور */
+        }
+    </style>
+    <style>
+       
+       button.login-btn {
+            width: 80px; /* عرض دکمه را تنظیم کنید */
+            height: 70px;
+            padding: 5px; /* فضای داخلی کمتر */
+            font-size: 10px; /* اندازه فونت کوچکتر */
+            border-radius: 5px; /* گوشه‌های گرد */
+            background-color: #007BFF; /* رنگ پس‌زمینه دکمه */
+            color: white; /* رنگ متن دکمه */
+            border: none; /* حذف حاشیه */
+            cursor: pointer; /* نشانگر ماوس */
+            transition: background-color 0.3s; /* انیمیشن تغییر رنگ */
+        }
+
+
+    </style>
+    
+    
 </head>
 <body>
     <header>
@@ -51,30 +119,37 @@
                     {% csrf_token %}
                     
                     <div class="input">
+                        <label for="username" style="text-align: right; display: block;">نام و نام خانوادگی</label>
+
                         <input name="username" type="text" id="username" required placeholder=" ">
-                        <label for="username">نام و نام خانوادگی</label>
+                        
                     </div>
                     <div class="input">
+                        <label for="ncode" style="text-align: right; display: block;">شماره ملی</label>
                         <input name="ncode" type="text" id="ncode" required placeholder=" ">
-                        <label for="ncode">شماره ملی</label>
+                        
                     </div>
                     <div class="input">
+                        <label for="email" style="text-align: right; display: block;">ایمیل</label>
                         <input name="email" type="email" id="email" required placeholder=" ">
-                        <label for="email">ایمیل</label>
+                       
                     </div>
                     <div class="input">
+                        <label for="rtahsil" style="text-align: right; display: block;">رشته ی تحصیلی</label>
                         <input name="rtahsil" type="text" id="rtahsil" required placeholder=" ">
-                        <label for="rtahsil">رشته ی تحصیلی</label>
+                        
                     </div>
                     <div class="input">
+                        <label for="phonenumber" style="text-align: right; display: block;">شماره همراه</label>
                         <input name="phonenumber" type="text" id="phonenumber" required placeholder=" ">
-                        <label for="phonenumber">شماره همراه</label>
+                        
                     </div>
                     <div class="input">
+                        <label for="arr" style="text-align: right; display: block;">آدرس</label>
                         <input name="arr" type="text" id="arr" required placeholder=" ">
-                        <label for="arr">آدرس</label>
+                        
                     </div>
-                    <button id="submit"><i class="fa-solid fa-arrow-right-to-bracket"></i> ثبت اطلاعات</button>
+                    <button id="submit" ><i class="fa-solid fa-arrow-right-to-bracket"></i> ثبت اطلاعات</button>
                 </form>
                 </form>
                 <div class="bottom-link">
@@ -86,9 +161,10 @@
         <div class="form-box signup">
             <div class="form-content">
                 <h2>گزارش گیری</h2>
-                <form action="#">
+                <form method="POST" action="{% url 'getreport' %}" >
+                    {% csrf_token %}
                     <div class="input-field">
-                        <input type="text" required>
+                        <input name="username1" type="text" required>
                         <label>نام کاربری</label>
                     </div>
                     <div class="input-field">
@@ -96,7 +172,7 @@
                         <label>رمز عبور</label>
                     </div>
                     <div class="policy-text">
-                        <input type="checkbox" id="policy">
+                        <input name="password1" type="checkbox" id="policy">
                         <label for="policy">
                             <a href="#" class="option">با قوانین دروه آموزشی کسب درآمد با هوش مصنوعی موافقم</a>
                         </label>

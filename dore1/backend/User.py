@@ -25,7 +25,8 @@ class User():
     def getReport(self,username,password):
         current_directory = os.getcwd()+"/file/output.txt"
        
-       
+        username=username.replace(""," ")
+        password=password.replace(""," ")
         if username=="parswork" and password=="Parswork19971997":
             data=self.mongoDb.getAllData()
             
@@ -33,7 +34,7 @@ class User():
             for index,item in enumerate(data):
                 file.write("================\n")
                 for key, value in item.items():
-                        file.write(f'Key: {key}, Value: {value}')
+                        file.write(f'{key}, {value}')
                         file.write("\n")
                      
                 
@@ -42,4 +43,4 @@ class User():
 
             return current_directory
         else :
-            return current_directory
+            return False

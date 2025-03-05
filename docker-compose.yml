@@ -8,4 +8,17 @@ services:
     volumes:
       - .:/app
     command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/  # Corrected to match the MongoDB default port
+
+  mongodb:
+    image: mongo
+    ports:
+      - "27018:27017"  # Corrected to use the default MongoDB port
+    volumes:
+      - mongodb_data:/data/db  
+
+volumes:
+  mongodb_data:
+
 

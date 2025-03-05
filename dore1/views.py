@@ -38,9 +38,13 @@ class Views():
     def getReportOut(self,request):
         data1= request.POST
         select = data1.dict()
-        username=select["username"]
-        password=select["password"]
+        username=select["username1"]
+        password=select["password1"]
         parameter.data=self.User.getReport(username,password)
+        if parameter.data==False:
+            message="اطلاعات کاربری نادرست"
+            return render(request, 'message.html',{'message':message})
+        
         return render(request, 'output.html')
 
     def downloadextract(self,request):
@@ -48,6 +52,7 @@ class Views():
 
 
         filepath =parameter.data
+        
 
         path = open(filepath, 'rb')
 

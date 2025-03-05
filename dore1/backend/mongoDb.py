@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 
-client=MongoClient("mongodb://127.0.0.1:27017", serverSelectionTimeoutMS=5000)
+client=MongoClient("mongodb://mongodb:27017/", serverSelectionTimeoutMS=5000)
 class mongoDb():
     def __init__(self) -> None:
         self.mydb = client["database"]
