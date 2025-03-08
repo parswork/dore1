@@ -10,7 +10,8 @@ from .models import UserModel
 from .forms import RegisterForm
 from openpyxl import Workbook
 
-
+USERNAME="parswork"
+PASSWORD="199797"
 
 class Views():
     def __init__(self) -> None:
@@ -41,8 +42,13 @@ class Views():
         return render(request, 'report.html')
     
     def getReportOut(self,request):
-
-        if request.user.is_superuser:
+        data1= request.POST
+        select = data1.dict()
+        username=select["username1"]
+        password=select["password11"]
+        data=[username,password]
+        print(data)
+        if username==USERNAME and password==PASSWORD:
             response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
             response['Content-Disposition'] = 'attachment; filename="users.xlsx"'
             workbook = Workbook()
