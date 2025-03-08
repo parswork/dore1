@@ -5,11 +5,11 @@ from datetime import datetime
 
 class UserModel(models.Model):
     
-    username = models.CharField(max_length=100)
-    ncode = models.CharField(max_length=10)
-    phonenumber = models.CharField(max_length=11)
-    rtahsil=models.CharField(max_length=100)
-    email=models.EmailField(max_length=100)
+    username = models.CharField(max_length=100,unique=True)
+    ncode = models.CharField(max_length=10,unique=True)
+    phonenumber = models.CharField(max_length=11,unique=True)
+    rtahsi=models.CharField(max_length=100)
+    email=models.EmailField(max_length=100,unique=True)
     arr = models.CharField(max_length=100)
    
 

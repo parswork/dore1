@@ -19,10 +19,10 @@ from django.urls import path
 from .views import Views
 app=Views()
 urlpatterns = [
-    path('', app.mainPage),
+    path('', app.mainPage,name='login'),
     path('report/', app.getReport),
     path('savedata/', app.addUser,name="savedata"),
     path('getreport/', app.getReportOut,name="getreport"),
-    path('getrport/', app.downloadextract,name="getrport"),
+   
     
 ]

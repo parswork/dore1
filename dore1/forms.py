@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserModel
+from django.core.exceptions import ValidationError
 
 class RegisterForm(forms.ModelForm):
     class Meta:
@@ -21,4 +22,15 @@ class RegisterForm(forms.ModelForm):
             'phonenumber': forms.TextInput(attrs={'placeholder': 'شماره همراه', 'class': 'input', 'style': 'text-align: right; display: block;'}),
             'arr': forms.TextInput(attrs={'placeholder': 'آدرس', 'class': 'input', 'style': 'text-align: right; display: block;'}),
         }
+        def clean_email(self):
+            email = self.cleaned_data.get('email')
+            if UserModel.objects.filter(email=email).exists():
+                raise ValidationError('این ایمیل قبلاً ثبت شده است.')
+            return email
+
+        def clean_phonenumber(self):
+            phonenumber = self.cleaned_data.get('phonenumber')
+            if UserModel.objects.filter(phonenumber=phonenumber).exists():
+                raise ValidationError('این شماره همراه قبلاً ثبت شده است.')
+            return phonenumber
         

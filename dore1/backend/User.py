@@ -1,5 +1,9 @@
 from .data_sent import data_sent
 from .mongoDb import mongoDb
+from dore1.forms import RegisterForm
+from dore1.models import UserModel
+from django.http import HttpResponse
+from openpyxl import Workbook
 
 
 import os
@@ -17,7 +21,7 @@ class User():
             data11=self.mongoDb.configData1(data)
             print(data11)
             model2=self.mongoDb.saveData(data11)
-            #data2=["lit_user_1997",data[0]]
+           
             if model2==True:
                 return "عملیات موفقیت آمیز بود"
             else : 
@@ -44,3 +48,9 @@ class User():
             return current_directory
         else :
             return False
+    def getAllUser(self):
+        results = UserModel.objects.all()
+        print(results)
+        for index,item in enumerate(results):
+            print(item.email)
+        

@@ -137,6 +137,18 @@
             <div class="form-content">
                 <form method="POST" action="{% url 'savedata' %}" class="register">
                     {% csrf_token %}
+                    {% if form.errors %}
+                        <div class="errorlist">
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            {% endfor %}
+                            {% for error in form.non_field_errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                     <div class="input">
                         
                         <label for="rtahsil" style="text-align: right; display: block;">نام و نام خانوادگی</label>
@@ -160,7 +172,7 @@
                         
                        
                         <label for="rtahsil" style="text-align: right; display: block;">رشته تحصیلی</label>
-                        {{ form.rtahsil }}
+                        {{ form.rtahsi }}
                     </div>
                     <div class="input">
                         
@@ -176,6 +188,7 @@
                         {{ form.arr }}
                         
                     </div>
+                    
                     <button id="submit" ><i class="fa-solid fa-arrow-right-to-bracket"></i> ثبت اطلاعات</button>
                 </form>
                 </form>
