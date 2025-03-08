@@ -2,4 +2,4 @@
 
 class data_sent():
     def __init__(self):
-        pass
+        self.message_register_succ="ثبت نام موفقیت آمیز بود"

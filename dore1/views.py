@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .backend.data_sent import data_sent
 import os
 from django.http import HttpResponse, Http404
@@ -6,6 +6,8 @@ from .backend.mongoDb import mongoDb
 from .backend.User import User
 from .backend.prameter import parameter
 import mimetypes
+from .models import UserModel
+from .forms import RegisterForm
 
 
 
@@ -14,8 +16,22 @@ class Views():
         self.data_sent=data_sent()
         self.mongoDb=mongoDb()
         self.User=User()
+        self.UserModel=UserModel()
     def mainPage(self,request):
         return render(request, 'index.html')
+
+
+    def addUser(self,request):
+        if request.method == 'POST':
+            form = RegisterForm(request.POST)
+            if form.is_valid():
+                form.save()  
+                message=self.data_sent.message_register_succ
+                return render(request, 'message.html',{'message':message})
+        else:
+            form = RegisterForm()
+    
+        return render(request, 'index.html', {'form': form})
     def saveData(self,request):
         data=[]
         data1= request.POST
@@ -28,6 +44,8 @@ class Views():
         data.append(select['arr'])
         print(data)
         message=self.User.saveUser(data)
+
+        
         
         return render(request, 'message.html',{'message':message})
         

@@ -85,6 +85,26 @@
             cursor: pointer; /* نشانگر ماوس */
             transition: background-color 0.3s; /* انیمیشن تغییر رنگ */
         }
+        .input input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: right; /* برای راست‌چین کردن متن */
+        }
+
+        .btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #218838;
+        }
 
 
     </style>
@@ -117,36 +137,43 @@
             <div class="form-content">
                 <form method="POST" action="{% url 'savedata' %}" class="register">
                     {% csrf_token %}
-                    
                     <div class="input">
-                        <label for="username" style="text-align: right; display: block;">نام و نام خانوادگی</label>
-
-                        <input name="username" type="text" id="username" required placeholder=" ">
+                        
+                        <label for="rtahsil" style="text-align: right; display: block;">نام و نام خانوادگی</label>
+                        {{ form.username }}
                         
                     </div>
                     <div class="input">
-                        <label for="ncode" style="text-align: right; display: block;">شماره ملی</label>
-                        <input name="ncode" type="text" id="ncode" required placeholder=" ">
+                        <label for="rtahsil" style="text-align: right; display: block;"> شماره ملی</label>
+                      
+                        {{ form.ncode }}
                         
                     </div>
                     <div class="input">
-                        <label for="email" style="text-align: right; display: block;">ایمیل</label>
-                        <input name="email" type="email" id="email" required placeholder=" ">
+                        
+                        
+                        <label for="rtahsil" style="text-align: right; display: block;">ایمیل</label>
+                        {{ form.email }}
                        
                     </div>
                     <div class="input">
-                        <label for="rtahsil" style="text-align: right; display: block;">رشته ی تحصیلی</label>
-                        <input name="rtahsil" type="text" id="rtahsil" required placeholder=" ">
+                        
+                       
+                        <label for="rtahsil" style="text-align: right; display: block;">رشته تحصیلی</label>
+                        {{ form.rtahsil }}
+                    </div>
+                    <div class="input">
+                        
+                       
+                        <label for="rtahsil" style="text-align: right; display: block;"> شماره همراه</label>
+                        {{ form.phonenumber }}
                         
                     </div>
                     <div class="input">
-                        <label for="phonenumber" style="text-align: right; display: block;">شماره همراه</label>
-                        <input name="phonenumber" type="text" id="phonenumber" required placeholder=" ">
                         
-                    </div>
-                    <div class="input">
-                        <label for="arr" style="text-align: right; display: block;">آدرس</label>
-                        <input name="arr" type="text" id="arr" required placeholder=" ">
+                        
+                        <label for="rtahsil" style="text-align: right; display: block;">آدرس</label>
+                        {{ form.arr }}
                         
                     </div>
                     <button id="submit" ><i class="fa-solid fa-arrow-right-to-bracket"></i> ثبت اطلاعات</button>

@@ -21,7 +21,7 @@ app=Views()
 urlpatterns = [
     path('', app.mainPage),
     path('report/', app.getReport),
-    path('savedata/', app.saveData,name="savedata"),
+    path('savedata/', app.addUser,name="savedata"),
     path('getreport/', app.getReportOut,name="getreport"),
     path('getrport/', app.downloadextract,name="getrport"),
     
